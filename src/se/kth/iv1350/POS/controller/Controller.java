@@ -1,6 +1,6 @@
 package se.kth.iv1350.POS.controller;
 
-import view.View;
+/*import view.View;
 import model.Sale;
 import startup.main;
 import integration.InventorySystem;
@@ -8,7 +8,14 @@ import integration.AccountingSystem;
 import integration.DiscountDataBase;
 import model.Customer;
 import model.Identifier;
-import integration.itemDTO;
+import integration.itemDTO;*/
+
+
+import se.kth.iv1350.POS.model.Customer;
+import se.kth.iv1350.POS.model.Identifier;
+import se.kth.iv1350.POS.model.Sale;
+
+import javax.swing.text.View;
 
 public class Controller {
 
@@ -16,7 +23,7 @@ public class Controller {
 
 	private Sale sale;
 
-	private main main;
+	//private main main;
 
 	private InventorySystem inventorySystem;
 
