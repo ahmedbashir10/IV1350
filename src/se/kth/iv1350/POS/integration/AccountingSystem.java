@@ -1,7 +1,7 @@
 package se.kth.iv1350.POS.integration;
 
-import model.Sale;
-import controller.Controller;
+import se.kth.iv1350.POS.model.Sale;
+import se.kth.iv1350.POS.controller.Controller;
 
 public class AccountingSystem {
 

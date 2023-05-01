@@ -1,8 +1,8 @@
 package se.kth.iv1350.POS.integration;
 
-import controller.Controller;
-import model.Sale;
-import model.Identifier;
+import se.kth.iv1350.POS.controller.Controller;
+import se.kth.iv1350.POS.model.Sale;
+import se.kth.iv1350.POS.model.Identifier;
 
 public class InventorySystem {
 

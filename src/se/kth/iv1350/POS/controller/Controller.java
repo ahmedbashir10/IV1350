@@ -11,6 +11,10 @@ import model.Identifier;
 import integration.itemDTO;*/
 
 
+import se.kth.iv1350.POS.integration.AccountingSystem;
+import se.kth.iv1350.POS.integration.DiscountDataBase;
+import se.kth.iv1350.POS.integration.InventorySystem;
+import se.kth.iv1350.POS.integration.itemDTO;
 import se.kth.iv1350.POS.model.Customer;
 import se.kth.iv1350.POS.model.Identifier;
 import se.kth.iv1350.POS.model.Sale;

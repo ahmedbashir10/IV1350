@@ -1,8 +1,8 @@
 package se.kth.iv1350.POS.model;
 
-import controller.Controller;
-import integration.itemDTO;
-import integration.Discount;
+import se.kth.iv1350.POS.controller.Controller;
+import se.kth.iv1350.POS.integration.itemDTO;
+import se.kth.iv1350.POS.integration.Discount;
 
 public class Sale {
 

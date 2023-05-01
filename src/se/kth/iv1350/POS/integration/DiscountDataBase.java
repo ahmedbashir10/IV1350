@@ -1,7 +1,7 @@
 package se.kth.iv1350.POS.integration;
 
-import controller.Controller;
-import model.Customer;
+import se.kth.iv1350.POS.controller.Controller;
+import se.kth.iv1350.POS.model.Customer;
 
 public class DiscountDataBase {
 

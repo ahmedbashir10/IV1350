@@ -1,6 +1,6 @@
 package se.kth.iv1350.POS.model;
 
-import integration.itemDTO;
+import se.kth.iv1350.POS.integration.itemDTO;
 
 public class Receipt {
 

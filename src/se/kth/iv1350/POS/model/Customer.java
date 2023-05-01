@@ -1,6 +1,7 @@
 package se.kth.iv1350.POS.model;
 
-import controller.Controller;
+import se.kth.iv1350.POS.controller.Controller;
+
 
 public class Customer {
 

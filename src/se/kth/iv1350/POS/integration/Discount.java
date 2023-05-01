@@ -1,6 +1,6 @@
 package se.kth.iv1350.POS.integration;
 
-import model.Customer;
+import se.kth.iv1350.POS.model.Customer;
 
 public class Discount {
 

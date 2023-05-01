@@ -1,12 +1,12 @@
 package se.kth.iv1350.POS.model;
 
-import startup.main;
+import se.kth.iv1350.POS.startup.Main;
 
 class Printer {
 
 	private Sale sale;
 
-	private main main;
+	private Main main;
 
 	public Printer printer() {
 		return null;
