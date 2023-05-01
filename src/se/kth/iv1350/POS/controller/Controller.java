@@ -1,16 +1,5 @@
 package se.kth.iv1350.POS.controller;
 
-/*import view.View;
-import model.Sale;
-import startup.main;
-import integration.InventorySystem;
-import integration.AccountingSystem;
-import integration.DiscountDataBase;
-import model.Customer;
-import model.Identifier;
-import integration.itemDTO;*/
-
-
 import se.kth.iv1350.POS.integration.AccountingSystem;
 import se.kth.iv1350.POS.integration.DiscountDataBase;
 import se.kth.iv1350.POS.integration.InventorySystem;
