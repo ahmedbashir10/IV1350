@@ -1,4 +1,4 @@
-package controller;
+package se.kth.iv1350.POS.controller;
 
 import view.View;
 import model.Sale;
