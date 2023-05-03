@@ -15,7 +15,7 @@ public class Sale {
 	private double change;
 
 	private Receipt receipt;
-	private double totalQuantityOfGoods;
+	private double totalTaxes;
 
 	public Sale() {
 		this.receipt = new Receipt();
@@ -58,21 +58,20 @@ public class Sale {
 	}
 
 
-	public double getTotalQuantityOfGoods() {
-		return totalQuantityOfGoods;
+	public double getTotalTaxes() {
+		return totalTaxes;
 	}
 
-	public void setTotalQuantityOfGoods(double totalQuantityOfGoods) {
-		this.totalQuantityOfGoods = totalQuantityOfGoods;
+	public void setTotalTaxes(double totalTaxes) {
+		this.totalTaxes = totalTaxes;
 	}
-
 
 	public void addItem(ItemDTO itemDTO) {
 		if(getListOfItems().containsKey(itemDTO)){
 			addItemQuantity(listOfItems.get(itemDTO),  1);
 			recentAddedItem = itemDTO;
 			increseTotPrice(itemDTO, 1);
-			se
+			setTotalTaxes(getTotalTaxes() + getVAT(itemDTO));
 		}
 	}
 
@@ -82,9 +81,6 @@ public class Sale {
 
 	public void increseTotPrice(ItemDTO itemPriceToAdd, int itemQuantity){
 		setTotalPrice(getTotalPrice() + ((itemPriceToAdd.getPrice() + getVAT(itemPriceToAdd)) * itemQuantity));
-	}
-	public double getPrice() {
-		return 0;
 	}
 
 	public void getVAT(ItemDTO itemToCalculateVATOf){
