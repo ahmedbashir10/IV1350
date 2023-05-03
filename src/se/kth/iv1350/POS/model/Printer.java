@@ -2,7 +2,7 @@ package se.kth.iv1350.POS.model;
 
 import se.kth.iv1350.POS.startup.Main;
 
-class Printer {
+public class Printer {
 
 	private Sale sale;
 
