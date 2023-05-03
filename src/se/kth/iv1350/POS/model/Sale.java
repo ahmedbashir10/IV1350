@@ -9,22 +9,50 @@ public class Sale {
 	private java.lang.LocalTime saleTime;
 
 	private double totalPrice;
+	private double paidAmount;
 
 	private double change;
 
 	private Receipt receipt;
+	private double totalQuantityOfGoods;
 
-	private Controller controller;
-
-	private Printer printer;
-
-	public Sale Sale() {
-		return null;
+	public Sale() {
+		this.receipt = new Receipt();
 	}
 
-	private void setTimeOfSale() {
-
+	public double getPaidAmount() {
+		return paidAmount;
 	}
+
+	public void setPaidAmount(double paidAmount){
+		this.paidAmount = paidAmount;
+	}
+
+	public double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	public double getChange() {
+		return change;
+	}
+
+	public void setChange(double change) {
+		this.change = change;
+	}
+
+
+	public double getTotalQuantityOfGoods() {
+		return totalQuantityOfGoods;
+	}
+
+	public void setTotalQuantityOfGoods(double totalQuantityOfGoods) {
+		this.totalQuantityOfGoods = totalQuantityOfGoods;
+	}
+
 
 	public void addItem(itemDTO itemDTO) {
 
@@ -39,18 +67,6 @@ public class Sale {
 	}
 
 	public void addTotalPrice(int totalPrice) {
-
-	}
-
-	public Sale getThisSale() {
-		return null;
-	}
-
-	public double getChange(double totalAmount) {
-		return 0;
-	}
-
-	public void endSale() {
 
 	}
 
