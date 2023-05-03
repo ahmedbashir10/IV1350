@@ -1,13 +1,14 @@
 package se.kth.iv1350.POS.model;
 
-import se.kth.iv1350.POS.controller.Controller;
-import se.kth.iv1350.POS.integration.itemDTO;
 import se.kth.iv1350.POS.integration.Discount;
+import se.kth.iv1350.POS.integration.ItemDTO;
+
+import java.util.HashMap;
 
 public class Sale {
 
-	private java.lang.LocalTime saleTime;
-
+	private ItemDTO recentAddedItem;
+	private HashMap<ItemDTO, Integer> listOfItems = new HashMap<>();
 	private double totalPrice;
 	private double paidAmount;
 
@@ -20,12 +21,24 @@ public class Sale {
 		this.receipt = new Receipt();
 	}
 
+	public Receipt getReceipt() {
+		return receipt;
+	}
+
 	public double getPaidAmount() {
 		return paidAmount;
 	}
 
 	public void setPaidAmount(double paidAmount){
 		this.paidAmount = paidAmount;
+	}
+
+	public HashMap<ItemDTO, Integer> getListOfItems() {
+		return listOfItems;
+	}
+
+	public void setListOfItems(HashMap<ItemDTO, Integer> listOfItems) {
+		this.listOfItems = listOfItems;
 	}
 
 	public double getTotalPrice() {
@@ -54,17 +67,40 @@ public class Sale {
 	}
 
 
-	public void addItem(itemDTO itemDTO) {
-
+	public void addItem(ItemDTO itemDTO) {
+		if(getListOfItems().containsKey(itemDTO)){
+			addItemQuantity(listOfItems.get(itemDTO),  1);
+			recentAddedItem = itemDTO;
+			increseTotPrice(itemDTO, 1);
+			se
+		}
 	}
 
-	public void addItemQuantity(int itemDTO, int quantity) {
-
+	public void addItemQuantity(int ItemDTO, int quantityItems) {
+			getListOfItems().put(recentAddedItem, quantityItems);
 	}
 
+	public void increseTotPrice(ItemDTO itemPriceToAdd, int itemQuantity){
+		setTotalPrice(getTotalPrice() + ((itemPriceToAdd.getPrice() + getVAT(itemPriceToAdd)) * itemQuantity));
+	}
 	public double getPrice() {
 		return 0;
 	}
+
+	public void getVAT(ItemDTO itemToCalculateVATOf){
+		return itemToCalculateVATOf.getTaxRate() * itemToCalculateVATOf.getPrice();
+	}
+
+	public double calculateChange(){
+		setChange(paidAmount - totalPrice);
+		return change;
+	}
+
+	public  void updateReceipt(){
+		receipt.setSaleInformation(this);
+	}
+
+
 
 	public void addTotalPrice(int totalPrice) {
 
