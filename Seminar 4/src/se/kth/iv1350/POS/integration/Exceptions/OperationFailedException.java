@@ -2,7 +2,6 @@ package se.kth.iv1350.POS.integration.exceptions;
 
 /**
  * Is thrown when other exceptions from other type of layers is throwing too detailed exceptions
- * @author abbas
  *
  */
 public class OperationFailedException extends Exception {

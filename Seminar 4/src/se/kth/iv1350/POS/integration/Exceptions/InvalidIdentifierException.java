@@ -4,7 +4,6 @@ import se.kth.iv1350.POS.model.Identifier;
 
 /**
  * A checked exception that is thrown when an item with an invalid identifier is being scanned.
- * @author abbas
  *
  */
 public class InvalidIdentifierException extends Exception {
