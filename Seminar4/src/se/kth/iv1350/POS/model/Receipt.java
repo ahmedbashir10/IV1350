@@ -1,17 +1,34 @@
 package se.kth.iv1350.POS.model;
 
+/**
+ * Represents one receipt, which proves the payment of one sale.
+ */
+
 public class Receipt {
 	private Sale sale;
 
-	Receipt Receipt() {
-		return null;
-	}
-
-
-	void setSaleInformation(Sale sale) {
+	/**
+	 * Sets the sale of this receipt to a given sale.
+	 *
+	 * @param sale The given sale.
+	 */
+	void setSaleInfo(Sale sale) {
 		this.sale = sale;
 	}
-	//void addInfo(Sale sale) {
-	//}
-}
 
+	/**
+	 * Creates a string representation of this receipt.
+	 *
+	 * @return The string representation of this receipt.
+	 */
+	@Override
+	public String toString() {
+		StringBuilder receiptBuilder = new StringBuilder();
+		receiptBuilder.append("RECEIPT");
+		receiptBuilder.append("\n");
+		receiptBuilder.append(sale.toString());
+		return receiptBuilder.toString();
+
+	}
+
+}

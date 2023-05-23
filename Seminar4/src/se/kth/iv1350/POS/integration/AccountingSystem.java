@@ -1,20 +1,35 @@
 package se.kth.iv1350.POS.integration;
 
-import se.kth.iv1350.POS.controller.Controller;
 import se.kth.iv1350.POS.model.Sale;
 
+/**
+ * Represents the accounting system that holds information about a specific
+ * sale.
+ *
+ */
 public class AccountingSystem {
-
 	private Sale sale;
 
-	private Controller controller;
+	public AccountingSystem() {
+		// TODO Auto-generated constructor stub
+	}
 
-	public void addInfo(Sale sale) {
+	/**
+	 * Sets the info of the given sale to this accounting system
+	 *
+	 * @param sale The sale that contains certain information that needs to be
+	 *             replace the old information of this accounting system
+	 */
+	public void setSale(Sale sale) {
+		this.sale = sale;
 
 	}
 
-	public AccountingSystem accountingSystem() {
-		return null;
+	/**
+	 * @return the sale
+	 */
+	public Sale getSale() {
+		return sale;
 	}
 
 }
