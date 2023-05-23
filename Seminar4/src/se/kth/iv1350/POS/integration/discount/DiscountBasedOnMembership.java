@@ -23,11 +23,11 @@ public class DiscountBasedOnMembership implements DiscountCalculator {
      */
     @Override
     public double priceAfterDicsount(double currentPrice, Customer customer) throws DiscountException {
-        if (customer.getMembershipLength() >= 12) {
+        if (customer.getMembershipLenght() >= 12) {
             return currentPrice * 0.95;
         }
 
-        if (customer.getMembershipLength() >= 24) {
+        if (customer.getMembershipLenght() >= 24) {
             return currentPrice * 0.90;
         }
         throw new DiscountException(customer);

@@ -12,9 +12,8 @@ public class Printer {
 	 * @param receipt is the receipt object that contains the information that
 	 *                should be printed
 	 */
-	public void printReceipt(Receipt receiptToPrint) {
-		System.out.println(receiptToPrint.toString());
-
+	public void printReceipt(Receipt receipt) {
+		System.out.println(receipt.toString());
 	}
 
 }

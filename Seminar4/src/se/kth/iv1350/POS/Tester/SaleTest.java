@@ -1,13 +1,16 @@
+/**
+ *
+ */
 package se.kth.iv1350.POS.Tester;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import se.kth.iv1350.POS.integration.ItemDTO;
 import se.kth.iv1350.POS.model.Sale;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class SaleTest {
     private Sale sale;
@@ -30,7 +33,7 @@ class SaleTest {
      */
     @Test
     void priceWhenAnItemIsAddedTest() {
-        ItemDTO item1 = new ItemDTO("", 5, 0.25);
+        ItemDTO item1 = new ItemDTO("Tomato", 5, 0.25);
         sale.addItem(item1);
         assertEquals(6.25, sale.getTotalPrice(), "The total price is not updated correctly");
     }
@@ -78,7 +81,7 @@ class SaleTest {
         sale.addItem(item1);
         sale.addItem(item2);
         sale.addItem(item3);
-        sale.setPaidAmount(55);
+        sale.paymentByCustomer(55);
         assertEquals(5, sale.calculateChange(), "The change is not calculated correctly");
     }
 
@@ -128,7 +131,7 @@ class SaleTest {
         sale.addItem(ketchup);
         sale.addItem(tomato);
         sale.addItem(chips);
-        sale.setPaidAmount(42);
+        sale.paymentByCustomer(42);
         sale.calculateChange();
         assertEquals(true, sale.toString().contains("16.95"), "The VAT amount is not converted to string correctly");
     }
@@ -146,7 +149,7 @@ class SaleTest {
         sale.addItem(ketchup);
         sale.addItem(tomato);
         sale.addItem(chips);
-        sale.setPaidAmount(42);
+        sale.paymentByCustomer(42);
         sale.calculateChange();
         assertEquals(true, sale.toString().contains("19.95"), "The change amount is not converted to string correctly");
     }

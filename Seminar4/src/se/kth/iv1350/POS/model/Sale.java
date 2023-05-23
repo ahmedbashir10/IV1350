@@ -1,8 +1,12 @@
 package se.kth.iv1350.POS.model;
 
-import se.kth.iv1350.POS.integration.ItemDTO;
-
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
+import se.kth.iv1350.POS.integration.ItemDTO;
+import se.kth.iv1350.POS.integration.discount.DiscountCalculatorFactory;
+import se.kth.iv1350.POS.integration.Exceptions.DiscountException;
 
 /**
  * Represents one single sale, contains all information about the sale.
@@ -14,7 +18,9 @@ public class Sale {
 	private double totalVAT = 0;
 	private ItemDTO recentAddedItem;
 	private HashMap<ItemDTO, Integer> listOfItems = new HashMap<>();
+	private List<PaymentObserver> paymentObservers = new ArrayList<>();
 	private Receipt receipt;
+
 
 	/**
 	 * Creates a new instance of a sale
@@ -45,8 +51,38 @@ public class Sale {
 	 *
 	 * @param paidAmount The amount paid by the customer
 	 */
-	public void setPaidAmount(double paidAmount) {
+	public void paymentByCustomer(double paidAmount) {
 		this.paidAmount = paidAmount;
+		notifyObserversAboutPayment();
+	}
+
+	/**
+	 * Notifies the all classes that observes this class about a payment
+	 */
+	public void notifyObserversAboutPayment() {
+		for (PaymentObserver obs : paymentObservers)
+			obs.newPayment(paidAmount);
+	}
+
+	/**
+	 * Adds a list of observers to this list of observers.
+	 *
+	 * @param paymentObservers The certain list of observers to add
+	 */
+	public void addPaymentObservers(List<PaymentObserver> paymentObservers) {
+		paymentObservers.addAll(paymentObservers);
+	}
+
+	/**
+	 * Sets the total price to the price after calculating the discount based on the type of the discount.
+	 * @param typeOfDiscount A string description of the discount.
+	 * @param customer The customer that wants the discount.
+	 * @throws InstantiationException Is thrown when trying to create a type of discount that is not implemented.
+	 * @throws DiscountException Is thrown when this customer is not eligible for a discount of this type.
+	 */
+	public void setPriceAfterDiscount(String typeOfDiscount, Customer customer) throws InstantiationException, DiscountException {
+		DiscountCalculatorFactory discountCalculator = new DiscountCalculatorFactory();
+		totalPrice = discountCalculator.getDiscountCalculator(typeOfDiscount).priceAfterDicsount(totalPrice, customer);
 	}
 
 	/**
@@ -91,13 +127,11 @@ public class Sale {
 	/**
 	 * Sets the total tax to a specific amount.
 	 *
-	 * @param totalTax The totalTax to set
+	 * @param totalVAT The totalVAT to set
 	 */
 	private void setTotalVAT(double totalVAT) {
 		this.totalVAT = totalVAT;
 	}
-
-
 
 	/**
 	 * Adds a certain item to the list of items in this sale, the price of this item
@@ -192,8 +226,6 @@ public class Sale {
 	@Override
 	public String toString() {
 		StringBuilder saleSB = new StringBuilder();
-
-
 
 		var itemSet = getListOfItems().entrySet();
 		for (var entry : itemSet) {
