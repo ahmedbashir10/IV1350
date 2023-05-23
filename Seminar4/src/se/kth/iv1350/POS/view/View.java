@@ -43,7 +43,7 @@ public class View {
 
 		contr.startSale();
 		System.out.println("A new sale has been started" + "\n");
-		/*contr.scanItem(barcodeForMilk);
+		contr.scanItem(barcodeForMilk);
 		contr.scanItem(barcodeForChips);
 		contr.scanItem(barcodeForGodis);
 		System.out.println("Items has been scanned" + "\n");
@@ -63,20 +63,20 @@ public class View {
 					+ "please try again!" + "\n");
 			System.out.print("LOG: There is no discount calculator implementation that has this "
 					+ "description" + "\n" + "\n");
-		}*/
-		//totalPrice = contr.getTotalPrice();
-		//System.out.println("The price after discount is: " + totalPrice + "\n");
+		}
+		totalPrice = contr.getTotalPrice();
+		System.out.println("The price after discount is: " + totalPrice + "\n");
 		change = contr.payment(100);
 		paidAmount = contr.getSale().getPaidAmount();
-		//System.out.println("Customer payed: " + paidAmount + "\n");
-		//System.out.println("The change of this sale is: " + change + "\n");
+		System.out.println("Customer payed: " + paidAmount + "\n");
+		System.out.println("The change of this sale is: " + change + "\n");
 		contr.endSale();
 		System.out.println("The sale is ended and a receipt is printed" + "\n");
 
 
 
 
-		/*String barcodeThatDosentExist = "dosentExist";
+		String barcodeThatDosentExist = "dosentExist";
 		String barcodeThatNeedDataBaseAccess = "needsDataBaseAccess";
 		String testingExceptions[] = { barcodeThatDosentExist, barcodeThatNeedDataBaseAccess };
 
@@ -100,7 +100,7 @@ public class View {
 				System.out.println("LOG: The database could not get accessed "  + "\n");
 				exc.printStackTrace();
 			}
-		}*/
+		}
 
 	}
 
