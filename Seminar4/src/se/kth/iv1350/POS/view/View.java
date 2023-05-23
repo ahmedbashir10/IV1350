@@ -1,6 +1,8 @@
 package se.kth.iv1350.POS.view;
 
 import se.kth.iv1350.POS.controller.Controller;
+import se.kth.iv1350.POS.integration.Exceptions.InvalidIdentifierException;
+import se.kth.iv1350.POS.integration.Exceptions.OperationFailedException;
 
 /**
  * This is a placehodlder for the real view. It contains a hardcoded execution
@@ -24,7 +26,7 @@ public class View {
 
 	}
 
-	public void runFakeExecution() {
+	public void runFakeExecution() throws InvalidIdentifierException, OperationFailedException{
 		String barcodeForMilk = "m1020k";
 		String barcodeForChips = "c1020k";
 		String barcodeForGodis = "g1020k";
@@ -44,6 +46,32 @@ public class View {
 		System.out.println("The change of this sale is: " + change + "\n");
 		contr.endSale();
 		System.out.println("The sale is ended and a receipt is printed");
+
+		String barcodeThatDosentExist = "dosentExist";
+		String barcodeThatNeedDataBaseAccess = "needsDataBaseAccess";
+		String testingExceptions[] = { barcodeThatDosentExist, barcodeThatNeedDataBaseAccess };
+
+		contr.startSale();
+
+		for (int i = 0; i < 2; i++) {
+
+			try {
+				System.out.println("Scanning item that " + testingExceptions[i] + "\n");
+				contr.scanItem(testingExceptions[i]);
+
+			} catch (InvalidIdentifierException exc) {
+				System.out.println("User information: "
+						+ "Barcode " + exc.getInvalidbarcode() + " is not known in the" + " inventory system." + "\n");
+				System.out.println("LOG: Searched for an item that dosent exist in the catalog (HashMap)" + "\n");
+				exc.printStackTrace();
+				System.out.println("\n");
+			} catch (OperationFailedException exc) {
+				System.out.println("User information: Server is down!"  + "\n");
+				System.out.println("LOG: The database could not get accessed "  + "\n");
+				exc.printStackTrace();
+			}
+		}
+
 
 	}
 

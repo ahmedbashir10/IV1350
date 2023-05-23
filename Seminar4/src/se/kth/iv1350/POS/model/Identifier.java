@@ -1,8 +1,9 @@
 package se.kth.iv1350.POS.model;
 
+import se.kth.iv1350.POS.integration.Exceptions.DatabaseAccessException;
+
 /**
  * This class represents an identifier for an item.
- *
  */
 public class Identifier {
 	private String barcode;
@@ -14,6 +15,9 @@ public class Identifier {
 	 * @param barcode is the unique code that every item has to get identified
 	 */
 	public Identifier(String barcode) {
+		if (barcode.equals("needsDataBaseAccess")) {
+			throw new DatabaseAccessException("The database cannot be accessed");
+		}
 		this.barcode = barcode;
 	}
 
@@ -42,6 +46,14 @@ public class Identifier {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 *
+	 * @return The barcode of this identifier.
+	 */
+	public String getBarcode() {
+		return barcode;
 	}
 
 }

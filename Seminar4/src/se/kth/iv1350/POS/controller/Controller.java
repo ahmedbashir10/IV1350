@@ -1,6 +1,9 @@
 package se.kth.iv1350.POS.controller;
 
 import se.kth.iv1350.POS.integration.AccountingSystem;
+import se.kth.iv1350.POS.integration.Exceptions.DatabaseAccessException;
+import se.kth.iv1350.POS.integration.Exceptions.InvalidIdentifierException;
+import se.kth.iv1350.POS.integration.Exceptions.OperationFailedException;
 import se.kth.iv1350.POS.integration.InventorySystem;
 import se.kth.iv1350.POS.model.CashRegister;
 import se.kth.iv1350.POS.model.Identifier;
@@ -78,11 +81,19 @@ public class Controller {
 	 * Adds a specific item in the sale.
 	 *
 	 * @param barcode A unique code that identifies a certain item.
+	 * @throws InvalidIdentifierException Is thrown when an identifier does not exist in the inventory system.
+	 * @throws OperationFailedException  Is thrown to make the exception about database access more suitable for users.
 	 */
-	public void scanItem(String barcode) {
-		Identifier identifier = new Identifier(barcode);
-		sale.addItem(inventorySystem.getItemDTO(identifier));
+	public void scanItem(String barcode) throws InvalidIdentifierException, OperationFailedException {
+		try {
+			Identifier identifier = new Identifier(barcode);
+			sale.addItem(inventorySystem.getItemDTO(identifier));
+		}
+		catch(DatabaseAccessException exp) {
+			throw new OperationFailedException("Access denied", exp);
+		}
 	}
+
 
 	/**
 	 * Increases the quantity of the last added item in the sale.

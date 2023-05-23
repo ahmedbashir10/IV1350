@@ -2,15 +2,18 @@ package se.kth.iv1350.POS.integration.Exceptions;
 
 import se.kth.iv1350.POS.model.Customer;
 
+/**
+ * A checked exception that is thrown when something went wrong while working with discounts.
+ */
 public class DiscountException extends Exception{
     private Customer customer;
 
     public DiscountException(Customer customer) {
-        super("Could not find a discount for customerID " + customer);
+        super("Could not find a discount for customerID " + customer.getCustomerID());
         this.customer = customer;
     }
 
-    //public String getCustomerID(){
-       // return this.customer;
-    //}
+    public String getCustomerID(){
+       return customer.getCustomerID();
+    }
 }
