@@ -13,7 +13,6 @@ public class ItemDTO {
 	 * Constructs a data transfer object that represents a particular item
 	 *
 	 *
-	 * @param itemName        The name of that specific item
 	 * @param itemDescription A short description of that specific item
 	 * @param price           The price of the item
 	 * @param taxRate         The percentage of the tax that is included on the
