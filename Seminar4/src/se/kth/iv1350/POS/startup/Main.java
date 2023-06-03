@@ -28,7 +28,6 @@ public class Main {
         Controller contr = new Controller(inventorySystem, accountingSystem, printer);
         View view = new View(contr);
         view.runFakeExecution();
-
     }
 
 }
