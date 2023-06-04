@@ -44,7 +44,6 @@ public class View {
 		System.out.println("The change of this sale is: " + change + "\n");
 		contr.endSale();
 		System.out.println("The sale is ended and a receipt is printed");
-
 	}
 
 }
