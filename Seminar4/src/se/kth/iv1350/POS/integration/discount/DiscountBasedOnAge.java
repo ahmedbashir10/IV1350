@@ -30,7 +30,6 @@ public class DiscountBasedOnAge implements DiscountCalculator {
             return currentPrice * 0.8;
         }
         throw new DiscountException(customer);
-
     }
 
 }

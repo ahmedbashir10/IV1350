@@ -14,7 +14,6 @@ public class DiscountCalculatorFactory {
      * @return The instance of discountCalculator
      * @throws InstantiationException Is thrown when a description that is not registered is given.
      */
-
     public DiscountCalculator getDiscountCalculator(String shortDescription) throws InstantiationException {
 
         if (shortDescription.equals("age")) {

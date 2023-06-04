@@ -9,9 +9,7 @@ import se.kth.iv1350.POS.model.Customer;
  */
 public class DiscountBasedOnMembership implements DiscountCalculator {
 
-    DiscountBasedOnMembership(){
-
-    }
+    DiscountBasedOnMembership(){}
 
     /**
      * An algorithm to calculate the price after a discount that is based the length (in months)

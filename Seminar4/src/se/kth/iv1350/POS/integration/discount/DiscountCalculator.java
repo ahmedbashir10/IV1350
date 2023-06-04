@@ -11,6 +11,5 @@ public interface DiscountCalculator {
      * @param customer The current customer.
      * @return The price after the discount.
      */
-    public double priceAfterDicsount (double currentPrice, Customer customer)throws DiscountException;
-
+     double priceAfterDicsount (double currentPrice, Customer customer)throws DiscountException;
 }
