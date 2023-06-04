@@ -218,47 +218,4 @@ public class Sale {
 		return receipt;
 	}
 
-	/**
-	 * Makes a string representation of this sale
-	 *
-	 * @return The string representation of this sale
-	 */
-	@Override
-	public String toString() {
-		StringBuilder saleSB = new StringBuilder();
-
-		var itemSet = getListOfItems().entrySet();
-		for (var entry : itemSet) {
-			saleSB.append("Item: ");
-			saleSB.append(entry.getKey().getItemDescription());
-			saleSB.append(" Quantity: ");
-			saleSB.append(entry.getValue());
-			appendNewLine(saleSB);
-		}
-
-		saleSB.append("Total price of the sale ");
-		saleSB.append(totalPrice);
-		appendNewLine(saleSB);
-
-		saleSB.append("Total amount of VAT: ");
-		saleSB.append(totalVAT);
-		appendNewLine(saleSB);
-
-		saleSB.append("Total amount paid: ");
-		saleSB.append(paidAmount);
-		appendNewLine(saleSB);
-
-		saleSB.append("Total amount of change: ");
-		saleSB.append(change);
-		appendNewLine(saleSB);
-
-		return saleSB.toString();
-
-	}
-
-	private void appendNewLine(StringBuilder StringBuilderToAppendNewLineOn) {
-		StringBuilderToAppendNewLineOn.append("\n");
-
-	}
-
 }
