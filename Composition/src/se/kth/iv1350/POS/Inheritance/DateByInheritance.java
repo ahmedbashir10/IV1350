@@ -8,9 +8,6 @@ import java.util.Date;
 /**
  * Contains calculations that makes comparison between different days and times
  * more flexible
- *
- * @author abbas
- *
  */
 public class DateByInheritance extends Date {
 

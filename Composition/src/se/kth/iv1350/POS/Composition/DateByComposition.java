@@ -6,9 +6,6 @@ import se.kth.iv1350.POS.Exception.InvalidNumberException;
 /**
  * Contains calculations that makes comparison between different days and times
  * more flexible
- *
- * @author abbas
- *
  */
 public class DateByComposition {
     private Date date = new Date();

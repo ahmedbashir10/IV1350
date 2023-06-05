@@ -3,9 +3,6 @@ package se.kth.iv1350.POS.integration.Exceptions;
 /**
  * An unchecked exception that is thrown when the revenue is negative, the revenue should
  * be either zero or positive.
- *
- * @author abbas
- *
  */
 public class NotLogicalValueException extends RuntimeException {
     private double notLogicValue;

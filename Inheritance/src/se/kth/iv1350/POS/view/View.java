@@ -8,9 +8,6 @@ import se.kth.iv1350.POS.integration.Exceptions.DiscountException;
 /**
  * This is a sample of the real view. It contains a hardcoded execution
  * with calls to all system operations in the controller
- *
- * @author abbas
- *
  */
 
 public class View {
