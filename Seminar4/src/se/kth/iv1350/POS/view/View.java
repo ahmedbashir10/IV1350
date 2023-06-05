@@ -32,11 +32,41 @@ public class View {
 	/**
 	 * A test method to test the components of the program
 	 *
+	 * @return
 	 * @throws OperationFailedException
 	 * @throws InvalidIdentifierException
-	 *
 	 */
 	public void runFakeExecution() throws InvalidIdentifierException, OperationFailedException {
+		print("");
+
+		String barcodeThatDosentExist = "dosentExist";
+		String barcodeThatNeedDataBaseAccess = "needsDataBaseAccess";
+		String testingExceptions[] = { barcodeThatDosentExist, barcodeThatNeedDataBaseAccess };
+
+
+		contr.startSale();
+
+		for (int i = 0; i < 2; i++) {
+
+			try {
+				System.out.println("Scanning item that " + testingExceptions[i] + "\n");
+				contr.scanItem(testingExceptions[i]);
+
+			} catch (InvalidIdentifierException exc) {
+				System.out.println("User information: "
+						+ "Barcode " + exc.getInvalidbarcode() + " is not known in the" + " inventory system." + "\n");
+				System.out.println("LOG: Searched for an item that dosent exist in the catalog (HashMap)" + "\n");
+				exc.printStackTrace();
+				System.out.println("\n");
+			} catch (OperationFailedException exc) {
+				System.out.println("User information: Server is down!"  + "\n");
+				System.out.println("LOG: The database could not get accessed "  + "\n");
+				exc.printStackTrace();
+			}
+		}
+	}
+
+	public void print(String output) throws OperationFailedException, InvalidIdentifierException {
 		String barcodeForMilk = "m1020k";
 		String barcodeForChips = "c1020k";
 		String barcodeForGodis = "g1020k";
@@ -72,35 +102,5 @@ public class View {
 		System.out.println("The change of this sale is: " + change + "\n");
 		contr.endSale();
 		System.out.println("The sale is ended and a receipt is printed" + "\n");
-
-
-
-
-		String barcodeThatDosentExist = "dosentExist";
-		String barcodeThatNeedDataBaseAccess = "needsDataBaseAccess";
-		String testingExceptions[] = { barcodeThatDosentExist, barcodeThatNeedDataBaseAccess };
-
-
-		contr.startSale();
-
-		for (int i = 0; i < 2; i++) {
-
-			try {
-				System.out.println("Scanning item that " + testingExceptions[i] + "\n");
-				contr.scanItem(testingExceptions[i]);
-
-			} catch (InvalidIdentifierException exc) {
-				System.out.println("User information: "
-						+ "Barcode " + exc.getInvalidbarcode() + " is not known in the" + " inventory system." + "\n");
-				System.out.println("LOG: Searched for an item that dosent exist in the catalog (HashMap)" + "\n");
-				exc.printStackTrace();
-				System.out.println("\n");
-			} catch (OperationFailedException exc) {
-				System.out.println("User information: Server is down!"  + "\n");
-				System.out.println("LOG: The database could not get accessed "  + "\n");
-				exc.printStackTrace();
-			}
-		}
-
 	}
 }
