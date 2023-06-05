@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Composition/Composition.iml" filepath="$PROJECT_DIR$/Composition/Composition.iml" />
       <module fileurl="file://$PROJECT_DIR$/Inheritance/Inheritance.iml" filepath="$PROJECT_DIR$/Inheritance/Inheritance.iml" />
       <module fileurl="file://$PROJECT_DIR$/Seminar 3.iml" filepath="$PROJECT_DIR$/Seminar 3.iml" />
       <module fileurl="file://$PROJECT_DIR$/Seminar4/Seminar4.iml" filepath="$PROJECT_DIR$/Seminar4/Seminar4.iml" />
