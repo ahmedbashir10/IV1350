@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import se.kth.iv1350.POS.integration.Exceptions.DiscountException;
 import se.kth.iv1350.POS.integration.ItemDTO;
 import se.kth.iv1350.POS.integration.discount.DiscountCalculatorFactory;
-import se.kth.iv1350.POS.integration.Exceptions.DiscountException;
 
 /**
  * Represents one single sale, contains all information about the sale.
@@ -18,9 +18,8 @@ public class Sale {
 	private double totalVAT = 0;
 	private ItemDTO recentAddedItem;
 	private HashMap<ItemDTO, Integer> listOfItems = new HashMap<>();
-	private List<PaymentObserver> paymentObservers = new ArrayList<>();
 	private Receipt receipt;
-
+	private List<PaymentObserver> paymentObservers = new ArrayList<>();
 
 	/**
 	 * Creates a new instance of a sale
@@ -61,16 +60,16 @@ public class Sale {
 	 */
 	public void notifyObserversAboutPayment() {
 		for (PaymentObserver obs : paymentObservers)
-			obs.newPayment(paidAmount);
+			obs.newPayment(totalPrice);
 	}
 
 	/**
 	 * Adds a list of observers to this list of observers.
 	 *
-	 * @param paymentObservers The certain list of observers to add
+	 * @param observerToAdd The certain list of observers to add
 	 */
-	public void addPaymentObservers(List<PaymentObserver> paymentObservers) {
-		this.paymentObservers.addAll(paymentObservers);
+	public void addPaymentObservers(List<PaymentObserver> observersToAdd) {
+		paymentObservers.addAll(observersToAdd);
 	}
 
 	/**
@@ -127,7 +126,7 @@ public class Sale {
 	/**
 	 * Sets the total tax to a specific amount.
 	 *
-	 * @param totalVAT The totalVAT to set
+	 * @param totalTax The totalTax to set
 	 */
 	private void setTotalVAT(double totalVAT) {
 		this.totalVAT = totalVAT;
@@ -166,6 +165,7 @@ public class Sale {
 	 */
 	public void addItemQuantity(Integer quantityOfTheItem) {
 		getListOfItems().put(recentAddedItem, quantityOfTheItem);
+
 	}
 
 	/**
@@ -215,6 +215,49 @@ public class Sale {
 	 */
 	public Receipt getReceipt() {
 		return receipt;
+	}
+
+	/**
+	 * Makes a string representation of this sale
+	 *
+	 * @return The string representation of this sale
+	 */
+	@Override
+	public String toString() {
+		StringBuilder saleSB = new StringBuilder();
+
+		var itemSet = getListOfItems().entrySet();
+		for (var entry : itemSet) {
+			saleSB.append("Item: ");
+			saleSB.append(entry.getKey().getItemDescription());
+			saleSB.append(" Quantity: ");
+			saleSB.append(entry.getValue());
+			appendNewLine(saleSB);
+		}
+
+		saleSB.append("Total price of the sale ");
+		saleSB.append(totalPrice);
+		appendNewLine(saleSB);
+
+		saleSB.append("Total amount of VAT: ");
+		saleSB.append(totalVAT);
+		appendNewLine(saleSB);
+
+		saleSB.append("Total amount paid: ");
+		saleSB.append(paidAmount);
+		appendNewLine(saleSB);
+
+		saleSB.append("Total amount of change: ");
+		saleSB.append(change);
+		appendNewLine(saleSB);
+
+		return saleSB.toString();
+
+	}
+
+	private void appendNewLine(StringBuilder StringBuilderToAppendNewLineOn) {
+		StringBuilderToAppendNewLineOn.append("\n");
+
 	}
 
 }

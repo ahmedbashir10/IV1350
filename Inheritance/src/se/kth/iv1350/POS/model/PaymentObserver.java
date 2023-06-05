@@ -10,5 +10,5 @@ public interface PaymentObserver {
      * Every observer has to implement it.
      * @param payment
      */
-    void newPayment(double payment);
+    public void newPayment(double payment);
 }
