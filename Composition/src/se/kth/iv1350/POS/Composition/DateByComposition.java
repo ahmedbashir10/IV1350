@@ -22,7 +22,7 @@ public class DateByComposition {
      * @param second The given second
      * @return A stringBuilder that contains the difference in days and time.
      */
-    public StringBuilder dayAndTimeDifference(int day, int hour, int minute, int second) {
+    public StringBuilder dateDifference(int day, int hour, int minute, int second) {
         StringBuilder builder = new StringBuilder();
         try {
             builder.append("Difference in days is " + dateDifference(day) + "\n");
