@@ -44,8 +44,8 @@ class ViewTest {
     }
 
     @Test
-    void print_validOutput_outputIsCorrect1() throws OperationFailedException, InvalidIdentifierException {
-       String barcodeForMilk = "m1020k";
+    void printAValidOutputTest() throws OperationFailedException, InvalidIdentifierException {
+        String barcodeForMilk = "m1020k";
         String barcodeForChips = "c1020k";
         String barcodeForGodis = "g1020k";
         controller.startSale();
@@ -54,14 +54,22 @@ class ViewTest {
         controller.scanItem(barcodeForGodis);
         double totalPrice = controller.getTotalPrice();
         double totalVAT = controller.getSale().getTotalVAT();
-        double totalPaidAmount = controller.getSale().getPaidAmount();
+
+        double change = controller.payment(100);
         double totalChange = controller.getSale().getChange();
+        double totalPaidAmount = controller.getSale().getPaidAmount();
 
         // Arrange
-        String expectedOutput = "A new sale has been started" + "\n\n" +
+        String expectedOutput =
+                "The total revenue from totalRevenueView is now: " + totalPaidAmount + " \n\n" +
+                "A new sale has been started" + "\n\n" +
                 "Items has been scanned" + "\n\n" +
                 "The price is: " + totalPrice + "\n\n" +
                 "The customer with id 662 want a discount based on his age: " + "\n\n" +
+                "The price after discount is: " + totalPrice + "\n\n" +
+                "The total revenue from totalRevenueView is now: " + "200.0 " + "\n\n" +
+                "Customer payed: " + totalPaidAmount + "\n\n" +
+                "The change of this sale is: " + change + "\n\n" +
                 "******************************************************************" + "\n" +
                 "                          RECEIPT                      			 " + "\n" +
                 "******************************************************************" + "\n" +
@@ -79,9 +87,35 @@ class ViewTest {
                 "The sale is ended and a receipt is printed";
 
         // Act
-        view.print("");
+        view.printA("");
 
         // Assert
         assertEquals(expectedOutput, outputStreamCaptor.toString().trim());
     }
+
+    @Test
+    void printBValidOutputTest() throws OperationFailedException, InvalidIdentifierException {
+        String barcodeThatDosentExist = "dosentExist";
+        String barcodeThatNeedDataBaseAccess = "needsDataBaseAccess";
+        String testingExceptions[] = { barcodeThatDosentExist, barcodeThatNeedDataBaseAccess };
+
+        String expectedOutput =
+                "Scanning item that dosentExist\n" +
+                        "User information: Barcode dosentExist is not known in the inventory system.\n" +
+                        "LOG: Searched for an item that dosent exist in the catalog (HashMap)\n" +
+                        "\n" +
+                        "Scanning item that needsDataBaseAccess\n" +
+                        "User information: Server is down!\n" +
+                        "LOG: The database could not get accessed\n";
+
+        // Act
+        view.printB("");
+
+        // Assert
+        for (int i = 0; i < 2; i++) {
+            controller.scanItem(testingExceptions[i]);
+            assertEquals(expectedOutput, outputStreamCaptor.toString().trim());
+        }
+    }
+
 }

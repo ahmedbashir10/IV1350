@@ -37,8 +37,49 @@ public class View {
 	 * @throws InvalidIdentifierException
 	 */
 	public void runFakeExecution() throws InvalidIdentifierException, OperationFailedException {
-		print("");
+		printA("");
+		printB("");
+	}
 
+	public void printA(String output) throws OperationFailedException, InvalidIdentifierException {
+		String barcodeForMilk = "m1020k";
+		String barcodeForChips = "c1020k";
+		String barcodeForGodis = "g1020k";
+
+		contr.startSale();
+		System.out.println("A new sale has been started" + "\n");
+		contr.scanItem(barcodeForMilk);
+		contr.scanItem(barcodeForChips);
+		contr.scanItem(barcodeForGodis);
+		System.out.println("Items has been scanned" + "\n");
+		totalPrice = contr.getTotalPrice();
+		System.out.println("The price is: " + totalPrice + "\n");
+		System.out.println("The customer with id 662 want a discount based on his age: " + "\n");
+		/*try {
+			contr.calculatePriceAfterDiscount("age", contr.getAccountingSystem().getCustomer("662"));
+		} catch (DiscountException exc) {
+			System.out.print("User information: Customer with the id " + exc.getCustomerID() + " "
+					+ "is not eligible for a discount!"+ "\n");
+			System.out.print("LOG: The customer does not fit in any of the implemented algorithms"
+					+ "for calculating a discount"+ "\n" + "\n");
+
+		} catch (InstantiationException exc) {
+			System.out.print("User information: There is no discount of the type you searched for, "
+					+ "please try again!" + "\n");
+			System.out.print("LOG: There is no discount calculator implementation that has this "
+					+ "description" + "\n" + "\n");
+		}*/
+		totalPrice = contr.getTotalPrice();
+		System.out.println("The price after discount is: " + totalPrice + "\n");
+		change = contr.payment(100);
+		paidAmount = contr.getSale().getPaidAmount();
+		System.out.println("Customer payed: " + paidAmount + "\n");
+		System.out.println("The change of this sale is: " + change + "\n");
+		contr.endSale();
+		System.out.println("The sale is ended and a receipt is printed" + "\n");
+	}
+
+	public void printB(String output){
 		String barcodeThatDosentExist = "dosentExist";
 		String barcodeThatNeedDataBaseAccess = "needsDataBaseAccess";
 		String testingExceptions[] = { barcodeThatDosentExist, barcodeThatNeedDataBaseAccess };
@@ -66,41 +107,4 @@ public class View {
 		}
 	}
 
-	public void print(String output) throws OperationFailedException, InvalidIdentifierException {
-		String barcodeForMilk = "m1020k";
-		String barcodeForChips = "c1020k";
-		String barcodeForGodis = "g1020k";
-
-		contr.startSale();
-		System.out.println("A new sale has been started" + "\n");
-		contr.scanItem(barcodeForMilk);
-		contr.scanItem(barcodeForChips);
-		contr.scanItem(barcodeForGodis);
-		System.out.println("Items has been scanned" + "\n");
-		totalPrice = contr.getTotalPrice();
-		System.out.println("The price is: " + totalPrice + "\n");
-		System.out.println("The customer with id 662 want a discount based on his age: " + "\n");
-		try {
-			contr.calculatePriceAfterDiscount("age", contr.getAccountingSystem().getCustomer("662"));
-		} catch (DiscountException exc) {
-			System.out.print("User information: Customer with the id " + exc.getCustomerID() + " "
-					+ "is not eligible for a discount!"+ "\n");
-			System.out.print("LOG: The customer does not fit in any of the implemented algorithms"
-					+ "for calculating a discount"+ "\n" + "\n");
-
-		} catch (InstantiationException exc) {
-			System.out.print("User information: There is no discount of the type you searched for, "
-					+ "please try again!" + "\n");
-			System.out.print("LOG: There is no discount calculator implementation that has this "
-					+ "description" + "\n" + "\n");
-		}
-		totalPrice = contr.getTotalPrice();
-		System.out.println("The price after discount is: " + totalPrice + "\n");
-		change = contr.payment(100);
-		paidAmount = contr.getSale().getPaidAmount();
-		System.out.println("Customer payed: " + paidAmount + "\n");
-		System.out.println("The change of this sale is: " + change + "\n");
-		contr.endSale();
-		System.out.println("The sale is ended and a receipt is printed" + "\n");
-	}
 }
