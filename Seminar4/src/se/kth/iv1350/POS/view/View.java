@@ -1,7 +1,6 @@
 package se.kth.iv1350.POS.view;
 
 import se.kth.iv1350.POS.controller.Controller;
-import se.kth.iv1350.POS.integration.Exceptions.DiscountException;
 import se.kth.iv1350.POS.integration.Exceptions.InvalidIdentifierException;
 import se.kth.iv1350.POS.integration.Exceptions.OperationFailedException;
 
